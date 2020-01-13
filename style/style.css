@@ -1,0 +1,45 @@
+html{
+	background-color:black;
+}
+
+body {
+	padding-top: 0px;/* mettre 10px si la barre de navigation est enlevée*/
+	background-color: grey/*Ghostwhite*/;
+}
+
+/* Les titres et paragraphes*/
+h1{
+	font-family:Chilanka, serif, sans-serif;/*Police d'écriture*/
+	font-size:3.0rem;/*Taille police*/
+	color:blue;
+}
+
+p{
+	font-size:1.2rem;
+	font-family:;
+}
+
+
+
+img{
+	width:100px;
+	height:auto;
+}
+
+
+
+
+[id*="card"]{
+	display:inline;
+	margin:10px 10px 10px 10px;
+	backface-visibility: hidden;
+    transform-style: preserve-3d;
+	transition-duration: 0.5s;
+	transition-property: transform;
+	transition-timing-function: ease-out;
+}
+
+div[class^="card"].rotated{
+
+        transform: rotateY(180deg);
+}
