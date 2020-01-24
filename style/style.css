@@ -22,7 +22,7 @@ p{
 
 
 img{
-	width:100px;
+	width:150px;
 	height:auto;
 }
 
@@ -31,7 +31,7 @@ img{
 
 [id*="card"]{
 	display:inline;
-	margin:10px 10px 10px 10px;
+	margin:5px 5px 5px 5px;
 	backface-visibility: hidden;
     transform-style: preserve-3d;
 	transition-duration: 0.5s;
