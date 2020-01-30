@@ -27,10 +27,10 @@
 			
 			$("#card-dos1").on("click",function(){//$(function(){})Permet d'attendre la disponibilité du DOM
 				
-				let hat = document.getElementById("card-dos1")
-				$(hat).unbind('click');
+				let card = document.getElementById("card-dos1")
+				$(card).unbind('click');
 
-				var img = hat.getElementsByTagName("img")[0]
+				var img = card.getElementsByTagName("img")[0]
 				img.src = 'Cartes/recurrents/'+Math.floor(Math.random() * 16)+'.jpg'
 				$("#card-dos1").append(img)
 				document.getElementById("card-dos1").id = "";
@@ -38,7 +38,7 @@
 				//$("#revele1").visible();
 				$("#card-dos1").css('display','none');
 				$("#revele1").css('display','inline');
-				//hat.id = "revele";
+				//card.id = "revele";
 				
 				
 				
