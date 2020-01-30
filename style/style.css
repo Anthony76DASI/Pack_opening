@@ -30,7 +30,6 @@ img{
 
 
 [id*="card"]{
-	display:inline;
 	margin:5px 5px 5px 5px;
 	backface-visibility: hidden;
     transform-style: preserve-3d;
@@ -42,4 +41,12 @@ img{
 div[class^="card"].rotated{
 
         transform: rotateY(180deg);
+}
+
+#card-dos1{
+	display:inline;
+}
+
+#revele1{
+	display:none;
 }

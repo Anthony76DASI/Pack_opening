@@ -16,7 +16,8 @@
 		<!-- Afficher 3 paquets sur le bord gauche de l'écran, au clic déplacement de 5 cartes en direction du "plateau" -->
 
 		<span id="card-dos1"><img src="Cartes/dos/famille.jpg"></span><!-- 1er emplacement carte famille -->
-		<span id="card-dos"><img src="Cartes/dos/recurrents.jpg"></span><!-- reste recurrents sauf si apparition guests et/ou unique -->
+		<!-- <span id="revele1"><img src=""></span> -->
+		<span id="card-dos2"><img src="Cartes/dos/recurrents.jpg"></span><!-- reste recurrents sauf si apparition guests et/ou unique -->
 		<span id="card-dos"><img src="Cartes/dos/recurrents.jpg"></span>
 		<span id="card-dos"><img src="Cartes/dos/recurrents.jpg"></span>
 		<span id="card-dos"><img src="Cartes/dos/recurrents.jpg"></span>
@@ -24,16 +25,20 @@
 		<script type="text/javascript">
 
 			
-			$("#card-dos1").on("click",function(){
-							
+			$("#card-dos1").on("click",function(){//$(function(){})Permet d'attendre la disponibilité du DOM
+				
 				let hat = document.getElementById("card-dos1")
-
+				$(hat).unbind('click');
 
 				var img = hat.getElementsByTagName("img")[0]
 				img.src = 'Cartes/recurrents/'+Math.floor(Math.random() * 16)+'.jpg'
 				$("#card-dos1").append(img)
 				document.getElementById("card-dos1").id = "";
-				hat.id = "revele";
+				//$("#card-dos1").hide();
+				//$("#revele1").visible();
+				$("#card-dos1").css('display','none');
+				$("#revele1").css('display','inline');
+				//hat.id = "revele";
 				
 				
 				
