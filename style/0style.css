@@ -1,10 +1,10 @@
     /* Pour ce qui est des propriétés du type perspective, transform, transition ou encore backface et selon les navigateurs Internet, il faut rajouter les préfixes correspondants: -webkit, -moz-, ms- ou -o*/
 
-	.flippingcard {
+	.carteSystem {
         position: relative;
         display: inline-block;
     }
-    div[class^="card"] {
+    div[class^="carte"] {
         height: 300px;
         width: 200px;
         perspective-origin: center bottom;
@@ -12,7 +12,7 @@
     }
 
 	
-    div[class^="card"] [class^="face"] {
+    div[class^="carte"] [class^="face"] {
         /* Dans ce cas, il faut laisser un espace entre les deux sélecteurs d'attributs ([class^="card"] et [class^="face"]) */
         /*ATTENTION: L'option TidyUp de JsFiddle va automatiquement enlever l'espace entre les deux sélecteurs d'attributs*/
         height: 100%;
@@ -31,21 +31,21 @@
         width: 200px;
 	}
 
-    div[class^="card"] .face-front {
+    div[class^="carte"] .face-dos {
 		height:20px;
         z-index: 5;
     }
-    div[class^="card"] .face-back {
+    div[class^="carte"] .face-retourne {
 		height: 300px;
         width: 200px;
         z-index: 0;
         transform: rotateY(-180deg);
     }
-    div[class^="card"].rotated .face-front {
+    div[class^="carte"].rotated .face-dos {
         z-index: 5;
         transform: rotateY(180deg);
     }
-    div[class^="card"].rotated .face-back {
+    div[class^="carte"].rotated .face-retourne {
         z-index: 10;
         transform: rotateY(0deg);
     }

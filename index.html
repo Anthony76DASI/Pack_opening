@@ -14,44 +14,107 @@
 		Règle 2 : guest star proba 15%
 		Règle 3 : unique apparition 10% -->
 		<!-- Afficher 3 paquets sur le bord gauche de l'écran, au clic déplacement de 5 cartes en direction du "plateau" -->
+		<!-- <div class="carteSystem"> -->
+			<!-- <div class="carte-single"> -->
+				<!-- <div class="face-dos"> -->
+		<div class="flippingcard">
+			<div class="card-single">
+				<div class="face-front">
+					<img src="Cartes/dos/famille.jpg"><!-- 1er emplacement carte famille -->
+				</div>
+				<!-- <div class="face-retourne"> --><div class="face-back">
+					<img src="">
+				</div>
+			</div>
+		</div>
+		<div class="flippingcard">
+			<div class="card-single">
+				<div class="face-front">
+					<img src="Cartes/dos/famille.jpg"><!-- 1er emplacement carte famille -->
+				</div>
+				<!-- <div class="face-retourne"> --><div class="face-back">
+					<img class="aleat" src="">
+				</div>
+			</div>
+		</div>
 
-		<span id="card-dos1"><img src="Cartes/dos/famille.jpg"></span><!-- 1er emplacement carte famille -->
-		<!-- <span id="revele1"><img src=""></span> -->
-		<span id="card-dos2"><img src="Cartes/dos/recurrents.jpg"></span><!-- reste recurrents sauf si apparition guests et/ou unique -->
-		<span id="card-dos"><img src="Cartes/dos/recurrents.jpg"></span>
-		<span id="card-dos"><img src="Cartes/dos/recurrents.jpg"></span>
-		<span id="card-dos"><img src="Cartes/dos/recurrents.jpg"></span>
+			<!--<span class="card-dos"><img src="Cartes/dos/recurrents.jpg"></span><!-- reste recurrents sauf si apparition guests et/ou unique -->
+			<!--<span class="card-dos"><img src="Cartes/dos/recurrents.jpg"></span>
+			<span class="card-dos"><img src="Cartes/dos/unique.jpg"></span>
+			<span class="card-dos"><img src="Cartes/dos/unique.jpg"></span>-->
+			
+			
+			
+			
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script type="text/javascript">
+			function aleatoire(){
+				let card = document.querySelectorAll("div[class^='face-back']");
+				
+				for (i=0; i< card.length; i++){
+					var img = document.getElementsByClassName("aleat")
+					img.src = 'Cartes/famille/'+Math.floor(Math.random() * 9)+'.jpg'//nbre de cartes + 1
+					$(".face-back").append(img)
+				}
+			}
+			/*$(".card-dos").on("click",function(){//$(function(){})Permet d'attendre la disponibilité du DOM
+				
+				let card = document.getElementsByClassName("card-dos")[0]
 
+				var img = document.getElementsByTagName("img")[0]
+				img.src = 'Cartes/famille/'+Math.floor(Math.random() * 9)+'.jpg'//nbre de cartes + 1
+				$(".card-dos").append(img)
+			})
+
+				img.src = 'Cartes/recurrents/'+Math.floor(Math.random() * 17)+'.jpg'//nbre de cartes + 1
+
+				img.src = 'Cartes/guest_cameo/'+Math.floor(Math.random() * 3)+'.jpg'//nbre de cartes + 1
+
+				img.src = 'Cartes/rare/'+Math.floor(Math.random() * 12)+'.jpg'//nbre de cartes + 1
+
+			})*/
 			
-			$("#card-dos1").on("click",function(){//$(function(){})Permet d'attendre la disponibilité du DOM
-				
-				let card = document.getElementById("card-dos1")
-				$(card).unbind('click');
+			function tournerLaCarte() {
+				var elements = this.parentNode.querySelectorAll("div[class^='card']");
+				for (var i = 0; i < elements.length; i++) {
+					if (elements[i].className == "card-single") {
+						aleatoire()
+						elements[i].className += " rotated";
+					}
+				}
+			}
 
-				var img = card.getElementsByTagName("img")[0]
-				img.src = 'Cartes/recurrents/'+Math.floor(Math.random() * 16)+'.jpg'
-				$("#card-dos1").append(img)
-				document.getElementById("card-dos1").id = "";
-				//$("#card-dos1").hide();
-				//$("#revele1").visible();
-				$("#card-dos1").css('display','none');
-				$("#revele1").css('display','inline');
-				//card.id = "revele";
-				
-				
-				
-				
-			})/*
 			window.onload = function () {
-				buttons = document.querySelectorAll("span");
+				buttons = document.querySelectorAll("div[class^='card']");
 				for (i = 0; i < buttons.length; i++) {
 					element = buttons[i];
-					//element.addEventListener("click");
+					element.addEventListener("click", tournerLaCarte);
+					
 				}
-			};*/
+			};
 			
+			/*function tournerCarte(){
+				var card = document.querySelectorAll(".card-dos")
+				
+				for (i=1; i< card.length; i+2){
+					if (card[i].className == "card-dos") {
+						var img = document.getElementsByTagName("img")[0]
+						img.src = 'Cartes/famille/'+Math.floor(Math.random() * 9)+'.jpg'//nbre de cartes + 1
+						$(".card-dos").append(img)
+						card[i].className += " retourne";
+					}
+					
+				}
+			}
+			window.onload = function(){
+				returnCarte = document.querySelectorAll(".card-dos")
+				console.log(returnCarte)
+				for (i=0; i< returnCarte.length; i++){
+					console.log(i)
+					element = returnCarte[i]
+					element.addEventListener("click",tournerCarte())
+				}
+			}*/
 		</script>
 	</body>
 </html>
