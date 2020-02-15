@@ -1,5 +1,7 @@
     /* Pour ce qui est des propriétés du type perspective, transform, transition ou encore backface et selon les navigateurs Internet, il faut rajouter les préfixes correspondants: -webkit, -moz-, ms- ou -o*/
-
+html{
+	background-color:grey;
+}
 	.flippingcard {
         position: relative;
         display: inline-block;
@@ -35,7 +37,7 @@
 		height:20px;
         z-index: 5;
     }
-    div[class^="card"] .face-back {
+    div[class^="card"] [class^="face-back"] {
 		height: 300px;
         width: 200px;
         z-index: 0;
@@ -45,7 +47,7 @@
         z-index: 5;
         transform: rotateY(180deg);
     }
-    div[class^="card"].rotated .face-back {
+    div[class^="card"].rotated [class^="face-back"]  {
         z-index: 10;
         transform: rotateY(0deg);
     }
@@ -53,4 +55,5 @@
 img{
 	width:150px;
 	height:auto;
+	border-radius:10px;
 }
