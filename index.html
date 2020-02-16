@@ -11,7 +11,7 @@
 	<body>
 		<!-- 5 cartes,par pack
 		Règle 1 : 1 carte famille Simpson/Bouvier par tirage
-		Règle 2 : guest star proba 15%
+		Règle 2 : 
 		Règle 3 : unique apparition 10% -->
 		<!-- Afficher 3 paquets sur le bord gauche de l'écran, au clic déplacement de 5 cartes en direction du "plateau" -->
 		<!-- <div class="carteSystem"> -->
@@ -72,7 +72,7 @@
 			
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script type="text/javascript">
-			var tableau = ['Pi','ka','chu']
+			var tableau = ['0','1','2','3']
 			
 			console.log(tableau[1])
 			
@@ -140,7 +140,12 @@
 					element = returnCarte[i]
 					element.addEventListener("click",tournerCarte())
 				}
-			}*/
+			}    var tab = [3, 6, 8];
+    var index = tab.indexOf(6);
+    if (index > -1) {
+      array.splice(index, 1);//supprimer entrée 1
+    }
+    console.log(tab);*/
 			
 		
 		</script>
