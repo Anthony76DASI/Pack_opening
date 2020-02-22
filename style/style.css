@@ -2,15 +2,19 @@
 html{
 	background-color:grey;
 }
+
+
+
 	.flippingcard {
         position: relative;
         display: inline-block;
     }
     div[class^="card"] {
         height: 300px;
-        width: 200px;
+        width: 150px;
         perspective-origin: center bottom;
         position: relative;
+		margin : 0 10px 0 10px;
     }
 
 	

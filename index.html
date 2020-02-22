@@ -9,15 +9,18 @@
 		<title></title>
 	</head>
 	<body>
-		<!-- 5 cartes,par pack
+		<form> 
+			<input type="button" value="Tirer un nouveau pack">
+		</form><!-- 5 cartes,par pack
 		Règle 0 : 1 carte famille Simpson/Bouvier par tirage
 		Règle 1 : pas de double dans un tirage
 		Règle 2 : 1 carte supplémentaire tous les 10 packs
-		Règle 3 :  -->
+		Règle 3 :  1 carte rare tous les 15 packs -->
 		<!-- Afficher 3 paquets sur le bord gauche de l'écran, au clic déplacement de 5 cartes en direction du "plateau" -->
 		<!-- <div class="carteSystem"> -->
 			<!-- <div class="carte-single"> -->
 				<!-- <div class="face-dos"> -->
+		
 		<div class="flippingcard">
 			<div class="card-single">
 				<div class="face-front0">
@@ -70,6 +73,15 @@
 		<script type="text/javascript">
 			let tableau = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16']
 			
+			var btn = document.querySelector('input');
+
+btn.addEventListener('click', updateBtn);
+
+function updateBtn() {
+ 
+
+			
+			
 			
 			let categorie = ['famille','guest_cameo','rare','recurrents']
 			let probaCat = [	0.15,		0.1,		0.05,		0.7]
@@ -97,12 +109,20 @@
 			}
 
 			function hasardCategorie(categorie, weights) {
-				let rand = Math.random();
+				let random = Math.random();
 				for(let i=0; i<weights.length; i++) {
-					if(rand <= weights[i]) return categorie[i];
-						rand -= weights[i];
+					if(random <= weights[i]) return categorie[i];
+					random -= weights[i];
 				}
 			}
+
+}
+
+
+
+
+
+
 			
 			function tournerLaCarte() {
 				var elements = this.parentNode.querySelectorAll("div[class^='card']");
@@ -129,7 +149,7 @@
     }
     console.log(tab);*/
 			
-		
+	
 		</script>
 	</body>
 </html>
