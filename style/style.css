@@ -28,12 +28,9 @@ html{
         transition-property: transform;
         transition-timing-function: ease-out;
     }
-	p{
-		height: 300px;
-        width: 200px;
-	}
 
-    div[class^="card"] .face-front {
+
+    div[class^="card"] [class^="face-front"] {
 		height:20px;
         z-index: 5;
     }
@@ -43,7 +40,7 @@ html{
         z-index: 0;
         transform: rotateY(-180deg);
     }
-    div[class^="card"].rotated .face-front {
+    div[class^="card"].rotated [class^="face-front"] {
         z-index: 5;
         transform: rotateY(180deg);
     }

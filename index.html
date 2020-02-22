@@ -10,17 +10,17 @@
 	</head>
 	<body>
 		<!-- 5 cartes,par pack
-		Règle 1 : 1 carte famille Simpson/Bouvier par tirage
-		Règle 2 : 
-		Règle 3 : unique apparition 10% -->
+		Règle 0 : 1 carte famille Simpson/Bouvier par tirage
+		Règle 1 : pas de double dans un tirage
+		Règle 2 : 1 carte supplémentaire tous les 10 packs
+		Règle 3 :  -->
 		<!-- Afficher 3 paquets sur le bord gauche de l'écran, au clic déplacement de 5 cartes en direction du "plateau" -->
 		<!-- <div class="carteSystem"> -->
 			<!-- <div class="carte-single"> -->
 				<!-- <div class="face-dos"> -->
 		<div class="flippingcard">
 			<div class="card-single">
-				<div class="face-front">
-					<img src="Cartes/dos/famille.jpg"><!-- 1er emplacement carte famille -->
+				<div class="face-front0">
 				</div>
 				<div class="face-back0">
 				</div>
@@ -28,8 +28,7 @@
 		</div>
 		<div class="flippingcard">
 			<div class="card-single">
-				<div class="face-front">
-					<img src="Cartes/dos/famille.jpg"><!-- 1er emplacement carte famille -->
+				<div class="face-front1">
 				</div>
 				<div class="face-back1">
 				</div>
@@ -37,8 +36,7 @@
 		</div>
 		<div class="flippingcard">
 			<div class="card-single">
-				<div class="face-front">
-					<img src="Cartes/dos/famille.jpg"><!-- 1er emplacement carte famille -->
+				<div class="face-front2">
 				</div>
 				<div class="face-back2">
 				</div>
@@ -46,8 +44,7 @@
 		</div>
 		<div class="flippingcard">
 			<div class="card-single">
-				<div class="face-front">
-					<img src="Cartes/dos/famille.jpg"><!-- 1er emplacement carte famille -->
+				<div class="face-front3">
 				</div>
 				<div class="face-back3">
 				</div>
@@ -55,15 +52,14 @@
 		</div>
 		<div class="flippingcard">
 			<div class="card-single">
-				<div class="face-front">
-					<img src="Cartes/dos/famille.jpg"><!-- 1er emplacement carte famille -->
+				<div class="face-front4">
 				</div>
 				<div class="face-back4">
 				</div>
 			</div>
 		</div>
 			<!--<span class="card-dos"><img src="Cartes/dos/recurrents.jpg"></span><!-- reste recurrents sauf si apparition guests et/ou unique -->
-			<!--<span class="card-dos"><img src="Cartes/dos/recurrents.jpg"></span>
+			<!-- <span class="card-dos"><img src="Cartes/dos/recurrents.jpg"></span>
 			<span class="card-dos"><img src="Cartes/dos/unique.jpg"></span>
 			<span class="card-dos"><img src="Cartes/dos/unique.jpg"></span>-->
 			
@@ -72,34 +68,41 @@
 			
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script type="text/javascript">
-			var tableau = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16']
-			var categorie = ['famille','guest_cameo','rare','recurrents']
-			
-			console.log(tableau[1])
+			let tableau = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16']
 			
 			
-				
-				for (i=0; i< 5; i++){
-					$(".face-back" + i).append("<div class='face-back'><img src='Cartes/famille/"+Math.floor(Math.random() * 9)+".jpg'></div>")[i]
-					$(this).removeClass(i)
+			let categorie = ['famille','guest_cameo','rare','recurrents']
+			let probaCat = [	0.15,		0.1,		0.05,		0.7]
+			
+	
+			for (i=0; i< 5; i++){
+				categorieTire = hasardCategorie(categorie, probaCat)//appel de la fonction qui tire les cartes
+				switch (categorieTire) {
+					case 'famille':
+						carteCategorie = 9;//il y a 9 cartes dans la catégorie
+						break;
+					case 'guest_cameo':
+						carteCategorie = 3;
+						break;
+					case 'rare':
+						carteCategorie = 11;
+						break;
+					case 'recurrents':
+						carteCategorie = 17;
+						break;
 				}
-			
-			/*$(".card-dos").on("click",function(){//$(function(){})Permet d'attendre la disponibilité du DOM
-				
-				let card = document.getElementsByClassName("card-dos")[0]
+				$(".face-front" + i).append("<div class='face-front'><img src='Cartes/dos/"+ categorieTire +".jpg'></div>")[i]
+				$(".face-back" + i).append("<div class='face-back'><img src='Cartes/"+ categorieTire +"/"+Math.floor(Math.random() * carteCategorie)+".jpg'></div>")[i]
+				$(this).removeClass(i)
+			}
 
-				var img = document.getElementsByTagName("img")[0]
-				img.src = 'Cartes/famille/'+Math.floor(Math.random() * 9)+'.jpg'//nbre de cartes + 1
-				$(".card-dos").append(img)
-			})
-
-				img.src = 'Cartes/recurrents/'+Math.floor(Math.random() * 17)+'.jpg'//nbre de cartes + 1
-
-				img.src = 'Cartes/guest_cameo/'+Math.floor(Math.random() * 3)+'.jpg'//nbre de cartes + 1
-
-				img.src = 'Cartes/rare/'+Math.floor(Math.random() * 12)+'.jpg'//nbre de cartes + 1
-
-			})*/
+			function hasardCategorie(categorie, weights) {
+				let rand = Math.random();
+				for(let i=0; i<weights.length; i++) {
+					if(rand <= weights[i]) return categorie[i];
+						rand -= weights[i];
+				}
+			}
 			
 			function tournerLaCarte() {
 				var elements = this.parentNode.querySelectorAll("div[class^='card']");
@@ -119,29 +122,7 @@
 					
 				}
 			};
-			
-			/*function tournerCarte(){
-				var card = document.querySelectorAll(".card-dos")
-				
-				for (i=1; i< card.length; i+2){
-					if (card[i].className == "card-dos") {
-						var img = document.getElementsByTagName("img")[0]
-						img.src = 'Cartes/famille/'+Math.floor(Math.random() * 9)+'.jpg'//nbre de cartes + 1
-						$(".card-dos").append(img)
-						card[i].className += " retourne";
-					}
-					
-				}
-			}
-			window.onload = function(){
-				returnCarte = document.querySelectorAll(".card-dos")
-				console.log(returnCarte)
-				for (i=0; i< returnCarte.length; i++){
-					console.log(i)
-					element = returnCarte[i]
-					element.addEventListener("click",tournerCarte())
-				}
-			}    var tab = [3, 6, 8];
+    /*var tab = [3, 6, 8];
     var index = tab.indexOf(6);
     if (index > -1) {
       array.splice(index, 1);//supprimer entrée 1
