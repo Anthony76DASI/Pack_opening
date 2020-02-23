@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">		
 		<link href="style/style.css" rel="stylesheet">
 		<link rel="icon" href="">
-		<title></title>
+		<title>Pack opening Simpson</title>
 	</head>
 	<body>
 		<form> 
@@ -16,7 +16,7 @@
 		Règle 0 : 1 carte famille Simpson/Bouvier par tirage
 		Règle 1 : pas de double dans un tirage
 		Règle 2 : 1 carte supplémentaire tous les 10 packs REGLE EFFECTIVE
-		Règle 3 :  1 carte rare tous les 15 packs -->
+		Règle 3 :  1 carte rare tous les 15 packs REGLE EFFECTIVE -->
 		<!-- Afficher 3 paquets sur le bord gauche de l'écran, au clic déplacement de 5 cartes en direction du "plateau" -->
 		<!-- <div class="carteSystem"> -->
 			<!-- <div class="carte-single"> -->
@@ -62,21 +62,32 @@
 				</div>
 			</div>
 		</div>
+		<!--
+		for i=0 i<nb de cartes sur le plateau i++
+		numeroBanni[]
+		if tirageCategorie[i]==categorieTire && tirageNumero[i]==numeroTire
+			for j=0 i<nb de cartes sur le plateau j++
+				if tirageCategorie[j]==categorieTire
+					numeroBanni.push(tirageNumero[j]
+					do
+						numeroTire = Math.floor(Math.random() * carteCategorie)
+						
+					
+					while(numeroTire==numeroBanni[0] || numeroTire==numeroBanni[1] || numeroTire==numeroBanni[2] || numeroTire==numeroBanni[3] || numeroTire==numeroBanni[4] || numeroTire==numeroBanni[5] ||numeroTire==numeroBanni[6]
 		
 		
 		
-		<!-- <div class="flippingcardtemp"> -->
-			<!-- <div class="card-single"> -->
-				<!-- <div class="face-front5"> -->
-				<!-- </div> -->
-				<!-- <div class="face-back5"> -->
-				<!-- </div> -->
-			<!-- </div> -->
-		<!-- </div> -->
+		
+		
+		A TESTER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
+		
+		-->
+		
+		
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script type="text/javascript">
-			let tableau = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16']
 			var nbrPack = 0
 			var surveilleRegle2 = 10
 			var surveilleRegle3 = 15
@@ -88,68 +99,94 @@
 			$(".compteur").append(nbrPack)
 			var btn = document.querySelector('input');
 
-btn.addEventListener('click', updateBtn);
+			btn.addEventListener('click', updateBtn);
 
-function updateBtn() {
-			//Partie compteur de packs ouverts
-			nbrPack += 1
-			var limitePlateau = 5 //parcourt les cartes du plateau jusqu'à ce que la valeur 5 est atteinte
-			$(".compteur").empty()
-			$(".compteur").append(nbrPack)
-			
-			//Réinitialisation du plateau
-			for (i=0; i< limitePlateau; i++){
-				$(".face-front"+ i).children(".face-front").remove()
-				$(".face-back"+ i).children(".face-back").remove()
-				$(".rotated").removeClass().addClass("card-single")
-				$(".flippingcardtemp").remove()
-			}
-
-			
-			
-			
-			
-			if (nbrPack==surveilleRegle2){
-				$("body").append("<div class='flippingcardtemp'><div class='card-single'><div class='face-front5'></div><div class='face-back5'></div></div></div>")
-				limitePlateau = 6
-				surveilleRegle2 += 10
-				$("div[class^='face-front5']").click(function() {
-					buttons = document.querySelectorAll("div[class^='card']");
-					element = buttons[5];
-					element.addEventListener("click", tournerLaCarte);
-				});
-			}
-	
-			for (i=0; i< limitePlateau; i++){//va jusqu'à 5 --> remplacer par une variable pour cas quand carte supplémentaire
-				categorieTire = hasardCategorie(categorie, probaCat)//appel de la fonction qui tire les cartes
-				switch (categorieTire) {
-					case 'famille':
-						carteCategorie = 14;//il y a x cartes dans la catégorie
-						break;
-					case 'guest_cameo':
-						carteCategorie = 8;
-						break;
-					case 'rare':
-						carteCategorie = 13;
-						break;
-					case 'recurrents':
-						carteCategorie = 20;
-						break;
+			function updateBtn() {
+				//Partie compteur de packs ouverts
+				nbrPack += 1
+				var limitePlateau = 5 //parcourt les cartes du plateau jusqu'à ce que la valeur 5 est atteinte
+				$(".compteur").empty()
+				$(".compteur").append(nbrPack)
+				
+				//Réinitialisation du plateau
+				for (i=0; i< limitePlateau; i++){
+					$(".face-front"+ i).children(".face-front").remove()
+					$(".face-back"+ i).children(".face-back").remove()
+					$(".rotated").removeClass().addClass("card-single")
+					$(".flippingcardtemp").remove()
 				}
-				$(".face-front" + i).append("<div class='face-front'><img src='Cartes/dos/"+ categorieTire +".jpg'></div>")[i]
-				$(".face-back" + i).append("<div class='face-back'><img src='Cartes/"+ categorieTire +"/"+Math.floor(Math.random() * carteCategorie)+".jpg'></div>")[i]
-				$(this).removeClass(i)
-			}
 
-			function hasardCategorie(categorie, weights) {
-				let random = Math.random();
-				for(let i=0; i<weights.length; i++) {
-					if(random <= weights[i]) return categorie[i];
-					random -= weights[i];
+				var tirageCategorie = []
+				var tirageNumero = []
+				
+				
+				
+				//Fonctionnement de la règle 2 : 1 carte supplémentaire tous les 10 packs
+				if (nbrPack==surveilleRegle2){
+					$("body").append("<div class='flippingcardtemp'><div class='card-single'><div class='face-front5'></div><div class='face-back5'></div></div></div>")
+					limitePlateau = 6
+					surveilleRegle2 += 10
+					$("div[class^='face-front5']").click(function() {
+						buttons = document.querySelectorAll("div[class^='card']");
+						element = buttons[5];
+						element.addEventListener("click", tournerLaCarte);
+					});
+				}//Fin de la règle 2
+		
+				for (i=0; i< limitePlateau; i++){//va jusqu'à 5 --> remplacer par une variable pour cas quand carte supplémentaire
+					
+					//Fonctionnement de la règle 3 : 1 carte rare tous les 15 packs
+					if (nbrPack==surveilleRegle3 && i==0){
+						carteCategorie = 13
+						numeroTire = Math.floor(Math.random() * carteCategorie)
+						
+						numeroTire = Math.floor(Math.random() * carteCategorie)
+						tirageNumero.push(numeroTire)
+						
+						$(".face-front0").append("<div class='face-front'><img src='Cartes/dos/rare.jpg'></div>")
+						$(".face-back0").append("<div class='face-back'><img src='Cartes/rare/"+ numeroTire +".jpg'></div>")
+						surveilleRegle3 += 15
+					}//Fin de la règle 3
+					
+					else{
+						categorieTire = hasardCategorie(categorie, probaCat)//appel de la fonction qui tire les cartes
+						
+						tirageCategorie.push(categorieTire)
+						console.log(tirageCategorie)
+						
+						switch (categorieTire) {
+							case 'famille':
+								carteCategorie = 14//il y a x cartes dans la catégorie
+								break;
+							case 'guest_cameo':
+								carteCategorie = 8
+								break;
+							case 'rare':
+								carteCategorie = 13
+								break;
+							case 'recurrents':
+								carteCategorie = 20
+								break;
+						}
+						numeroTire = Math.floor(Math.random() * carteCategorie)
+						tirageNumero.push(numeroTire)
+						console.log(tirageNumero)
+						
+						$(".face-front" + i).append("<div class='face-front'><img src='Cartes/dos/"+ categorieTire +".jpg'></div>")[i]
+						$(".face-back" + i).append("<div class='face-back'><img src='Cartes/"+ categorieTire +"/"+ numeroTire +".jpg'></div>")[i]
+						//$(this).removeClass(i)
+					}
 				}
-			}
 
-}
+				function hasardCategorie(categorie, weights) {
+					let random = Math.random();
+					for(let i=0; i<weights.length; i++) {
+						if(random <= weights[i]) return categorie[i];
+						random -= weights[i];
+					}
+				}
+
+			}
 
 
 
@@ -161,7 +198,6 @@ function updateBtn() {
 				var elements = this.parentNode.querySelectorAll("div[class^='card']");
 				for (var i = 0; i < elements.length; i++) {
 					if (elements[i].className == "card-single") {
-						
 						elements[i].className += " rotated";
 					}
 				}
@@ -172,8 +208,8 @@ function updateBtn() {
 			
 				buttons = document.querySelectorAll("div[class^='card']");
 				for (i = 0; i < buttons.length; i++) {
-					element = buttons[i];
-					element.addEventListener("click", tournerLaCarte);
+					carteSelect = buttons[i];
+					carteSelect.addEventListener("click", tournerLaCarte);
 					
 				}
 			};
