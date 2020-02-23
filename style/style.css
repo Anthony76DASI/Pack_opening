@@ -2,7 +2,12 @@
 html{
 	background-color:grey;
 }
-
+p{
+	background-color:yellow;
+	text-align:center;
+	border-radius:10px;
+	
+}
 
 
 	.flippingcard {
@@ -10,8 +15,8 @@ html{
         display: inline-block;
     }
     div[class^="card"] {
-        height: 300px;
-        width: 200px;
+        height: 340px;
+        width: 210px;
         perspective-origin: center bottom;
         position: relative;
 		margin : 0 10px 0 10px;
@@ -54,7 +59,7 @@ html{
     }
 
 img{
-	width:200px;
+	width:210px;
 	height:auto;
 	border-radius:10px;
 }
