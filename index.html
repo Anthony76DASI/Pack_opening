@@ -78,7 +78,10 @@
 btn.addEventListener('click', updateBtn);
 
 function updateBtn() {
- 
+			for (i=0; i< 5; i++){
+				$(".face-front"+ i).children(".face-front").remove()
+				$(".face-back"+ i).children(".face-back").remove()
+			}
 
 			
 			
@@ -91,16 +94,16 @@ function updateBtn() {
 				categorieTire = hasardCategorie(categorie, probaCat)//appel de la fonction qui tire les cartes
 				switch (categorieTire) {
 					case 'famille':
-						carteCategorie = 9;//il y a 9 cartes dans la catégorie
+						carteCategorie = 14;//il y a 9 cartes dans la catégorie
 						break;
 					case 'guest_cameo':
-						carteCategorie = 3;
+						carteCategorie = 8;
 						break;
 					case 'rare':
-						carteCategorie = 11;
+						carteCategorie = 13;
 						break;
 					case 'recurrents':
-						carteCategorie = 17;
+						carteCategorie = 20;
 						break;
 				}
 				$(".face-front" + i).append("<div class='face-front'><img src='Cartes/dos/"+ categorieTire +".jpg'></div>")[i]
