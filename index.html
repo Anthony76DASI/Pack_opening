@@ -15,7 +15,7 @@
 		<p>Nombres de packs ouvert : <span class="compteur"></span></p><!-- 5 cartes,par pack
 		Règle 0 : 1 carte famille Simpson/Bouvier par tirage
 		Règle 1 : pas de double dans un tirage
-		Règle 2 : 1 carte supplémentaire tous les 10 packs
+		Règle 2 : 1 carte supplémentaire tous les 10 packs REGLE EFFECTIVE
 		Règle 3 :  1 carte rare tous les 15 packs -->
 		<!-- Afficher 3 paquets sur le bord gauche de l'écran, au clic déplacement de 5 cartes en direction du "plateau" -->
 		<!-- <div class="carteSystem"> -->
@@ -113,16 +113,10 @@ function updateBtn() {
 				$("body").append("<div class='flippingcardtemp'><div class='card-single'><div class='face-front5'></div><div class='face-back5'></div></div></div>")
 				limitePlateau = 6
 				surveilleRegle2 += 10
-				$("div[class^='card']").click(function() {
+				$("div[class^='face-front5']").click(function() {
 					buttons = document.querySelectorAll("div[class^='card']");
-				for (i = 0; i < buttons.length; i++) {
-					console.log("co")
-					element = buttons[i];
+					element = buttons[5];
 					element.addEventListener("click", tournerLaCarte);
-					
-				}
-				
-				
 				});
 			}
 	
@@ -174,11 +168,10 @@ function updateBtn() {
 			}
 			
 
-			window.onload = function () {
+			window.onload = function () {//Surveille les éléments présents lors du chargement de la page
 			
 				buttons = document.querySelectorAll("div[class^='card']");
 				for (i = 0; i < buttons.length; i++) {
-					console.log("co")
 					element = buttons[i];
 					element.addEventListener("click", tournerLaCarte);
 					
