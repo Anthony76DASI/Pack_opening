@@ -63,7 +63,7 @@
 			</div>
 		</div>
 		<!--
-		for i=0 i<nb de cartes sur le plateau i++
+		for (i=0, i<limitePlateau i++
 		numeroBanni[]
 		if tirageCategorie[i]==categorieTire && tirageNumero[i]==numeroTire
 			for j=0 i<nb de cartes sur le plateau j++
@@ -118,6 +118,7 @@
 
 				var tirageCategorie = []
 				var tirageNumero = []
+				var numeroBanni = []
 				
 				
 				
@@ -152,7 +153,7 @@
 						categorieTire = hasardCategorie(categorie, probaCat)//appel de la fonction qui tire les cartes
 						
 						tirageCategorie.push(categorieTire)
-						console.log(tirageCategorie)
+						
 						
 						switch (categorieTire) {
 							case 'famille':
@@ -165,19 +166,50 @@
 								carteCategorie = 13
 								break;
 							case 'recurrents':
-								carteCategorie = 20
+								carteCategorie = 33
 								break;
 						}
 						numeroTire = Math.floor(Math.random() * carteCategorie)
+						
+						for (j=0; j<limitePlateau; j++){
+							//numeroBanni[]
+							if (tirageCategorie[j]==categorieTire && tirageNumero[j]==numeroTire){
+								console.log("Il y a un doublon")
+								for (k=0; k < limitePlateau; k++){
+									if (tirageCategorie[k]==categorieTire){
+										numeroBanni.push(tirageNumero[k])
+										do{
+											numeroTire = Math.floor(Math.random() * carteCategorie)
+											
+										
+										}while(numeroTire==numeroBanni[0] || numeroTire==numeroBanni[1] || numeroTire==numeroBanni[2] || numeroTire==numeroBanni[3] || numeroTire==numeroBanni[4] || numeroTire==numeroBanni[5] ||numeroTire==numeroBanni[6])
+										}
+								}
+							}
+						}
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
 						tirageNumero.push(numeroTire)
-						console.log(tirageNumero)
+						
 						
 						$(".face-front" + i).append("<div class='face-front'><img src='Cartes/dos/"+ categorieTire +".jpg'></div>")[i]
 						$(".face-back" + i).append("<div class='face-back'><img src='Cartes/"+ categorieTire +"/"+ numeroTire +".jpg'></div>")[i]
 						//$(this).removeClass(i)
 					}
 				}
-
+				console.log(tirageCategorie)
+				console.log(tirageNumero)
+				
 				function hasardCategorie(categorie, weights) {
 					let random = Math.random();
 					for(let i=0; i<weights.length; i++) {
@@ -203,24 +235,19 @@
 				}
 			}
 			
-
 			window.onload = function () {//Surveille les éléments présents lors du chargement de la page
-			
 				buttons = document.querySelectorAll("div[class^='card']");
 				for (i = 0; i < buttons.length; i++) {
 					carteSelect = buttons[i];
 					carteSelect.addEventListener("click", tournerLaCarte);
 					
 				}
-			};
+			}
     /*var tab = [3, 6, 8];
     var index = tab.indexOf(6);
     if (index > -1) {
       array.splice(index, 1);//supprimer entrée 1
-    }
-    console.log(tab);*/
-			
-	
+    }*/
 		</script>
 	</body>
 </html>
