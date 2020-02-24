@@ -12,12 +12,10 @@
 		<form> 
 			<input type="button" value="Tirer un nouveau pack">
 		</form>
-		<p>Nombres de packs ouvert : <span class="compteur"></span></p><!-- 5 cartes,par pack
-		Règle 0 : 1 carte famille Simpson/Bouvier par tirage
+		<p>Nombres de packs ouvert : <span class="compteur"></span></p><!-- 5 cartes par pack
 		Règle 1 : pas de double dans un tirage
 		Règle 2 : 1 carte supplémentaire tous les 10 packs REGLE EFFECTIVE
-		Règle 3 :  1 carte rare tous les 15 packs REGLE EFFECTIVE -->
-		<!-- Afficher 3 paquets sur le bord gauche de l'écran, au clic déplacement de 5 cartes en direction du "plateau" -->
+		Règle 3 : 1 carte rare tous les 15 packs REGLE EFFECTIVE -->
 		<!-- <div class="carteSystem"> -->
 			<!-- <div class="carte-single"> -->
 				<!-- <div class="face-dos"> -->
@@ -62,39 +60,16 @@
 				</div>
 			</div>
 		</div>
-		<!--
-		for (i=0, i<limitePlateau i++
-		numeroBanni[]
-		if tirageCategorie[i]==categorieTire && tirageNumero[i]==numeroTire
-			for j=0 i<nb de cartes sur le plateau j++
-				if tirageCategorie[j]==categorieTire
-					numeroBanni.push(tirageNumero[j]
-					do
-						numeroTire = Math.floor(Math.random() * carteCategorie)
-						
-					
-					while(numeroTire==numeroBanni[0] || numeroTire==numeroBanni[1] || numeroTire==numeroBanni[2] || numeroTire==numeroBanni[3] || numeroTire==numeroBanni[4] || numeroTire==numeroBanni[5] ||numeroTire==numeroBanni[6]
-		
-		
-		
-		
-		
-		A TESTER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	
-		
-		-->
-		
-		
-		
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script type="text/javascript">
 			var nbrPack = 0
 			var surveilleRegle2 = 10
 			var surveilleRegle3 = 15
 			
-			//Probabilité des différentes catégories (à déplacer ?)
+			//Probabilité des différentes catégories
 			let categorie = ['famille','guest_cameo','rare','recurrents']
-			let probaCat = [	0.15,		0.1,		0.05,		0.7]
+			let probaCat = [0.15, 0.1, 0.05, 0.7]
 			
 			$(".compteur").append(nbrPack)
 			var btn = document.querySelector('input');
@@ -115,7 +90,8 @@
 					$(".rotated").removeClass().addClass("card-single")
 					$(".flippingcardtemp").remove()
 				}
-
+				
+				//Réinitialisation des tableaux anti-doublons (Règle 1)
 				var tirageCategorie = []
 				var tirageNumero = []
 				var numeroBanni = []
@@ -172,43 +148,28 @@
 						numeroTire = Math.floor(Math.random() * carteCategorie)
 						
 						for (j=0; j<limitePlateau; j++){
-							//numeroBanni[]
+							numeroBanni = []
 							if (tirageCategorie[j]==categorieTire && tirageNumero[j]==numeroTire){
-								console.log("Il y a un doublon")
+								//console.log("Il y a un doublon")
+								//console.log(categorieTire,numeroTire)
 								for (k=0; k < limitePlateau; k++){
 									if (tirageCategorie[k]==categorieTire){
 										numeroBanni.push(tirageNumero[k])
 										do{
 											numeroTire = Math.floor(Math.random() * carteCategorie)
-											
-										
 										}while(numeroTire==numeroBanni[0] || numeroTire==numeroBanni[1] || numeroTire==numeroBanni[2] || numeroTire==numeroBanni[3] || numeroTire==numeroBanni[4] || numeroTire==numeroBanni[5] ||numeroTire==numeroBanni[6])
-										}
+									}
 								}
 							}
 						}
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
 						tirageNumero.push(numeroTire)
-						
-						
+							
 						$(".face-front" + i).append("<div class='face-front'><img src='Cartes/dos/"+ categorieTire +".jpg'></div>")[i]
 						$(".face-back" + i).append("<div class='face-back'><img src='Cartes/"+ categorieTire +"/"+ numeroTire +".jpg'></div>")[i]
-						//$(this).removeClass(i)
 					}
 				}
-				console.log(tirageCategorie)
-				console.log(tirageNumero)
+				//console.log(tirageCategorie)
+				//console.log(tirageNumero)
 				
 				function hasardCategorie(categorie, weights) {
 					let random = Math.random();
@@ -243,11 +204,7 @@
 					
 				}
 			}
-    /*var tab = [3, 6, 8];
-    var index = tab.indexOf(6);
-    if (index > -1) {
-      array.splice(index, 1);//supprimer entrée 1
-    }*/
+			
 		</script>
 	</body>
 </html>
