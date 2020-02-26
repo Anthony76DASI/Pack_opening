@@ -72,8 +72,9 @@
 			let probaCat = [0.15, 0.1, 0.05, 0.7]
 			
 			$(".compteur").append(nbrPack)
+			
+			//Surveillance bouton
 			var btn = document.querySelector('input');
-
 			btn.addEventListener('click', updateBtn);
 
 			function updateBtn() {
@@ -110,18 +111,11 @@
 					});
 				}//Fin de la règle 2
 		
-				for (i=0; i< limitePlateau; i++){//va jusqu'à 5 --> remplacer par une variable pour cas quand carte supplémentaire
+				for (i=0; i< limitePlateau; i++){
 					
 					//Fonctionnement de la règle 3 : 1 carte rare tous les 15 packs
 					if (nbrPack==surveilleRegle3 && i==0){
-						carteCategorie = 13
-						numeroTire = Math.floor(Math.random() * carteCategorie)
-						
-						numeroTire = Math.floor(Math.random() * carteCategorie)
-						tirageNumero.push(numeroTire)
-						
-						$(".face-front0").append("<div class='face-front'><img src='Cartes/dos/rare.jpg'></div>")
-						$(".face-back0").append("<div class='face-back'><img src='Cartes/rare/"+ numeroTire +".jpg'></div>")
+						categorieTire = 'rare'
 						surveilleRegle3 += 15
 					}//Fin de la règle 3
 					
@@ -129,7 +123,7 @@
 						categorieTire = hasardCategorie(categorie, probaCat)//appel de la fonction qui tire les cartes
 						
 						tirageCategorie.push(categorieTire)
-						
+					}	
 						
 						switch (categorieTire) {
 							case 'famille':
@@ -147,12 +141,12 @@
 						}
 						numeroTire = Math.floor(Math.random() * carteCategorie)
 						
-						for (j=0; j<limitePlateau; j++){
+						for (j=0; j< i; j++){
 							numeroBanni = []
 							if (tirageCategorie[j]==categorieTire && tirageNumero[j]==numeroTire){
 								//console.log("Il y a un doublon")
 								//console.log(categorieTire,numeroTire)
-								for (k=0; k < limitePlateau; k++){
+								for (k=0; k < i; k++){
 									if (tirageCategorie[k]==categorieTire){
 										numeroBanni.push(tirageNumero[k])
 										do{
@@ -166,7 +160,7 @@
 							
 						$(".face-front" + i).append("<div class='face-front'><img src='Cartes/dos/"+ categorieTire +".jpg'></div>")[i]
 						$(".face-back" + i).append("<div class='face-back'><img src='Cartes/"+ categorieTire +"/"+ numeroTire +".jpg'></div>")[i]
-					}
+					
 				}
 				//console.log(tirageCategorie)
 				//console.log(tirageNumero)
@@ -174,18 +168,14 @@
 				function hasardCategorie(categorie, weights) {
 					let random = Math.random();
 					for(let i=0; i<weights.length; i++) {
-						if(random <= weights[i]) return categorie[i];
+						if(random <= weights[i]){
+							return categorie[i];
+						}
 						random -= weights[i];
 					}
 				}
 
 			}
-
-
-
-
-
-
 			
 			function tournerLaCarte() {
 				var elements = this.parentNode.querySelectorAll("div[class^='card']");
