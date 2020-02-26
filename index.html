@@ -121,57 +121,57 @@
 					
 					else{
 						categorieTire = hasardCategorie(categorie, probaCat)//appel de la fonction qui tire les cartes
-						
-						tirageCategorie.push(categorieTire)
 					}	
-						
-						switch (categorieTire) {
-							case 'famille':
-								carteCategorie = 14//il y a x cartes dans la catégorie
-								break;
-							case 'guest_cameo':
-								carteCategorie = 8
-								break;
-							case 'rare':
-								carteCategorie = 13
-								break;
-							case 'recurrents':
-								carteCategorie = 33
-								break;
-						}
-						numeroTire = Math.floor(Math.random() * carteCategorie)
-						
-						for (j=0; j< i; j++){
-							numeroBanni = []
-							if (tirageCategorie[j]==categorieTire && tirageNumero[j]==numeroTire){
-								//console.log("Il y a un doublon")
-								//console.log(categorieTire,numeroTire)
-								for (k=0; k < i; k++){
-									if (tirageCategorie[k]==categorieTire){
-										numeroBanni.push(tirageNumero[k])
-										do{
-											numeroTire = Math.floor(Math.random() * carteCategorie)
-										}while(numeroTire==numeroBanni[0] || numeroTire==numeroBanni[1] || numeroTire==numeroBanni[2] || numeroTire==numeroBanni[3] || numeroTire==numeroBanni[4] || numeroTire==numeroBanni[5] ||numeroTire==numeroBanni[6])
-									}
+					tirageCategorie.push(categorieTire)
+					
+					switch (categorieTire) {
+						case 'famille':
+							carteCategorie = 14//il y a x cartes dans la catégorie
+							break;
+						case 'guest_cameo':
+							carteCategorie = 8
+							break;
+						case 'rare':
+							carteCategorie = 13
+							break;
+						case 'recurrents':
+							carteCategorie = 33
+							break;
+					}
+					numeroTire = Math.floor(Math.random() * carteCategorie)
+					
+					//Fonctionnement de la règle 1 : pas de doublon dans un pack
+					for (j=0; j< i; j++){
+						numeroBanni = []
+						if (tirageCategorie[j]==categorieTire && tirageNumero[j]==numeroTire){
+							console.log("Il y a un doublon")
+							console.log(categorieTire,numeroTire)
+							for (k=0; k < i; k++){
+								if (tirageCategorie[k]==categorieTire){
+									numeroBanni.push(tirageNumero[k])
+									do{
+										numeroTire = Math.floor(Math.random() * carteCategorie)
+									}while(numeroBanni.indexOf(numeroTire)!=-1)
 								}
 							}
 						}
-						tirageNumero.push(numeroTire)
-							
-						$(".face-front" + i).append("<div class='face-front'><img src='Cartes/dos/"+ categorieTire +".jpg'></div>")[i]
-						$(".face-back" + i).append("<div class='face-back'><img src='Cartes/"+ categorieTire +"/"+ numeroTire +".jpg'></div>")[i]
+					}
+					tirageNumero.push(numeroTire)
+					
+					$(".face-front" + i).append("<div class='face-front'><img src='Cartes/dos/"+ categorieTire +".jpg'></div>")[i]
+					$(".face-back" + i).append("<div class='face-back'><img src='Cartes/"+ categorieTire +"/"+ numeroTire +".jpg'></div>")[i]
 					
 				}
 				//console.log(tirageCategorie)
 				//console.log(tirageNumero)
 				
-				function hasardCategorie(categorie, weights) {
+				function hasardCategorie(categorie, proba) {
 					let random = Math.random();
-					for(let i=0; i<weights.length; i++) {
-						if(random <= weights[i]){
+					for(let i=0; i<proba.length; i++) {
+						if(random <= proba[i]){
 							return categorie[i];
 						}
-						random -= weights[i];
+						random -= proba[i];
 					}
 				}
 
