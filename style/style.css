@@ -10,7 +10,7 @@ p{
 }
 
 
-	.flippingcard {
+	.flippingcard,  .flippingcardtemp{
         position: relative;
         display: inline-block;
     }
