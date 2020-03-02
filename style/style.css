@@ -2,11 +2,14 @@
 html{
 	background-color:grey;
 }
-p{
+.jaune{
 	background-color:yellow;
 	text-align:center;
 	border-radius:10px;
 	
+}
+p,ul{
+	margin : 10px 10px 10px 10px;
 }
 
 

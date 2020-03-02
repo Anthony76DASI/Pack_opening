@@ -12,13 +12,13 @@
 		<form> 
 			<input type="button" value="Tirer un nouveau pack">
 		</form>
-		<p>Nombres de packs ouvert : <span class="compteur"></span></p><!-- 5 cartes par pack
-		Règle 1 : pas de double dans un tirage
-		Règle 2 : 1 carte supplémentaire tous les 10 packs REGLE EFFECTIVE
-		Règle 3 : 1 carte rare tous les 15 packs REGLE EFFECTIVE -->
-		<!-- <div class="carteSystem"> -->
-			<!-- <div class="carte-single"> -->
-				<!-- <div class="face-dos"> -->
+		<p class="jaune">Nombres de packs ouvert : <span class="compteur"></span></p>
+		<p>Vous avez 5 cartes par pack</p>
+		<ul>
+			<li>Règle 1 : pas de double dans un tirage</li>
+			<li>Règle 2 : 1 carte supplémentaire tous les 10 packs</li>
+			<li>Règle 3 : 1 carte rare tous les 15 packs</li>
+		</ul>
 		
 		<div class="flippingcard">
 			<div class="card-single">
@@ -60,7 +60,7 @@
 				</div>
 			</div>
 		</div>
-
+		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script type="text/javascript">
 			var nbrPack = 0
