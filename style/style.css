@@ -1,8 +1,11 @@
-    /* Pour ce qui est des propriétés du type perspective, transform, transition ou encore backface et selon les navigateurs Internet, il faut rajouter les préfixes correspondants: -webkit, -moz-, ms- ou -o*/
 html{
 	background-color:grey;
 	font-family:Arial;
 }
+body{
+	background-color:grey;
+}
+
 .jaune{
 	background-color:yellow;
 	text-align:center;
@@ -13,54 +16,67 @@ p,ul{
 	margin : 10px 10px 10px 10px;
 }
 
-
-	.flippingcard,  .flippingcardtemp{
-        position: relative;
-        display: inline-block;
-    }
-    div[class^="card"] {
-        height: 340px;
-        width: 210px;
-        perspective-origin: center bottom;
-        position: relative;
-		margin : 0 10px 0 10px;
-    }
-
+footer{
 	
-    div[class^="card"] [class^="face"] {
-        /* Dans ce cas, il faut laisser un espace entre les deux sélecteurs d'attributs ([class^="card"] et [class^="face"]) */
-        /*ATTENTION: L'option TidyUp de JsFiddle va automatiquement enlever l'espace entre les deux sélecteurs d'attributs*/
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        left: 0;
-        top: 0;
-        backface-visibility: hidden;
-        transform-style: preserve-3d;
-        transition-duration: 0.5s;
-        transition-property: transform;
-        transition-timing-function: ease-out;
-    }
+	line-height: 40px;/* hauteur */
+	text-align: center;
+	color:white;
+	border-top:5px solid yellow;
+	margin:10px 0 0 0;/* haut droite bas gauche */
+}
 
+a{
+	color:yellow;
+	text-decoration:underline;
+}
 
-    div[class^="card"] [class^="face-front"] {
-		height:20px;
-        z-index: 5;
-    }
-    div[class^="card"] [class^="face-back"] {
-		height: 300px;
-        width: 200px;
-        z-index: 0;
-        transform: rotateY(-180deg);
-    }
-    div[class^="card"].rotated [class^="face-front"] {
-        z-index: 5;
-        transform: rotateY(180deg);
-    }
-    div[class^="card"].rotated [class^="face-back"]  {
-        z-index: 10;
-        transform: rotateY(0deg);
-    }
+.flippingcard,  .flippingcardtemp{
+    position: relative;
+    display: inline-block;
+}
+
+div[class^="card"] {
+    height: 340px;
+    width: 210px;
+    perspective-origin: center bottom;
+    position: relative;
+	margin : 0 10px 0 10px;
+}
+
+div[class^="card"] [class^="face"] {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transition-duration: 0.5s;
+    transition-property: transform;
+    transition-timing-function: ease-out;
+	}
+
+div[class^="card"] [class^="face-front"] {
+	height:20px;
+    z-index: 5;
+}
+
+div[class^="card"] [class^="face-back"] {
+	height: 300px;
+    width: 200px;
+    z-index: 0;
+    transform: rotateY(-180deg);
+}
+
+div[class^="card"].rotated [class^="face-front"] {
+    z-index: 5;
+    transform: rotateY(180deg);
+}
+
+div[class^="card"].rotated [class^="face-back"]  {
+    z-index: 10;
+    transform: rotateY(0deg);
+}
 
 img{
 	width:210px;
