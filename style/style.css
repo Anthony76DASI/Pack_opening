@@ -1,6 +1,7 @@
     /* Pour ce qui est des propriétés du type perspective, transform, transition ou encore backface et selon les navigateurs Internet, il faut rajouter les préfixes correspondants: -webkit, -moz-, ms- ou -o*/
 html{
 	background-color:grey;
+	font-family:Arial;
 }
 .jaune{
 	background-color:yellow;
